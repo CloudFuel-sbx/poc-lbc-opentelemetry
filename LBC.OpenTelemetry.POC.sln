@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBC.OpenTelemetry.POC.Api", "LBC.OpenTelemetry.POC.Api\LBC.OpenTelemetry.POC.Api.csproj", "{5B0FA009-9790-435A-8621-A402EBDDED6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBC.OpenTelemetry.POC.Function", "LBC.OpenTelemetry.POC.Function\LBC.OpenTelemetry.POC.Function.csproj", "{91010549-0EE0-4298-AD4C-A7CDCA7DFEFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B0FA009-9790-435A-8621-A402EBDDED6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B0FA009-9790-435A-8621-A402EBDDED6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B0FA009-9790-435A-8621-A402EBDDED6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B0FA009-9790-435A-8621-A402EBDDED6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91010549-0EE0-4298-AD4C-A7CDCA7DFEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91010549-0EE0-4298-AD4C-A7CDCA7DFEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91010549-0EE0-4298-AD4C-A7CDCA7DFEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91010549-0EE0-4298-AD4C-A7CDCA7DFEFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED39A3EA-40AD-4FF0-9920-CA0E870B3FD1}
+	EndGlobalSection
+EndGlobal
