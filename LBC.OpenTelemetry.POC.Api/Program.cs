@@ -30,21 +30,33 @@ builder.Services.AddSingleton<IMessageSession>(endpointInstance);
 builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) =>
 {
     builder
-        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("sbns-lbctt-d-observability-poc"))
-        .AddSource("NServiceBus.*");
+        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(TelemetryConstants.ServiceName))
+        .AddSource(TelemetryConstants.ServiceName)
+        .AddSource("NServiceBus.*")
+        .AddSource("Azure.*");
+    //.AddAzureMonitorTraceExporter(options => options.ConnectionString = "InstrumentationKey=683f5d2f-c075-45b8-86a0-1906ac8af86d;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/");
 });
 
+//using var openTelemetry = Sdk.CreateTracerProviderBuilder()
+//    .AddSource("Azure.*") // Collect all traces from Azure SDKs
+//    .AddAzureMonitorTraceExporter(options => options.ConnectionString =
+//        "<Application Insights connection string>") // Export traces to Azure Monitor
+//    .Build(); // Start listening
+
+AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
+
 builder.Services.AddOpenTelemetry()
-        .WithTracing(builder =>
-        {
-            builder
-                .AddSource(TelemetryConstants.ServiceName)
-                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(TelemetryConstants.ServiceName));
-        })
-        .UseAzureMonitor(x =>
-        {
-            x.ConnectionString = "InstrumentationKey=683f5d2f-c075-45b8-86a0-1906ac8af86d;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/";
-        });
+        //.WithTracing(builder =>
+        //{
+        //    builder
+        //        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(TelemetryConstants.ServiceName))
+        //        .AddSource(TelemetryConstants.ServiceName)
+        //        .AddSource("Azure.*")
+        //        .AddSource("NServiceBus.*");
+        //    // .AddAzureMonitorTraceExporter(options => options.ConnectionString =
+        //    // "InstrumentationKey=683f5d2f-c075-45b8-86a0-1906ac8af86d;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/");
+        //})
+        .UseAzureMonitor(options => options.ConnectionString = "InstrumentationKey=683f5d2f-c075-45b8-86a0-1906ac8af86d;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/");
 
 var app = builder.Build();
 

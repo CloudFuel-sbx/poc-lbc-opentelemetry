@@ -54,14 +54,11 @@ public class NominationController : ControllerBase
 
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("sbq-nominations");
-        sendOptions.SetHeader("x-ms-client-tracking-id", activity.TraceId.ToString());
         sendOptions.SetHeader("Diagnostic-Id", activity.TraceId.ToString());
         sendOptions.SetHeader("CorrelationId", activity.TraceId.ToString());
         sendOptions.SetHeader("ActivityId", activity.Id.ToString());
         sendOptions.SetHeader("ActivityParentId", activity.ParentId.ToString());
-        sendOptions.SetHeader("x-ms-client-tracking-id", activity.Id.ToString());
-
-        sendOptions.StartNewConversation(activity.Id.ToString());
+        sendOptions.SetHeader("x-ms-client-tracking-id", activity.SpanId.ToString());
 
         sendOptions.SetMessageId(activity.Id.ToString());
 
